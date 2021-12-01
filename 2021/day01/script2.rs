@@ -26,7 +26,7 @@ line two
     println!("{:?}", vec);
     // Part 1
     let mut acc = 0;
-    for slice in vec.iter().copied().collect::<Vec<i32>>().windows(2) {
+    for slice in vec.windows(2) {
     if let [prev, next] = slice {
         println!("{}--{}", prev, next);
             if next > prev {
@@ -39,14 +39,14 @@ line two
     // Part 2
 
     let mut vec2: Vec<i32> = Vec::new();
-    for slice in vec.iter().copied().collect::<Vec<i32>>().windows(3) {
+    for slice in vec.windows(3) {
         println!("{:?}", slice);
         vec2.push(slice.iter().sum());
     }
 
     println!("{:?}", vec2);
     let mut acc = 0;
-    for slice in vec2.iter().copied().collect::<Vec<i32>>().windows(2) {
+    for slice in vec2.windows(2) {
     if let [prev, next] = slice {
         println!("{}--{}", prev, next);
             if next > prev {
