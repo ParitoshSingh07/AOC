@@ -18,30 +18,35 @@ def sliding_window(iterable, n):
         window.append(x)
         yield tuple(window)
 
-sample_input = """
-199
-200
-208
-210
-200
-207
-240
-269
-260
-263
-"""
 
-with open("input.txt") as f:
-    contents = f.read().strip()
+def main():
+    sample_input = """
+    199
+    200
+    208
+    210
+    200
+    207
+    240
+    269
+    260
+    263
+    """
     
-ints_list = [int(item) for item in contents.strip().split()]
+    with open("input.txt") as f:
+        contents = f.read().strip()
+        
+    ints_list = [int(item) for item in contents.strip().split()]
+    
+    # part 1
+    res = [(r > l) for (l, r) in sliding_window(ints_list, 2)]
+    print(sum(res))
+    
+    # part 2
+    
+    window_sums = [sum(window) for window in sliding_window(ints_list, 3)]
+    res = [(r > l) for (l, r) in sliding_window(window_sums, 2)]
+    print(sum(res))
 
-# part 1
-res = [(r > l) for (l, r) in sliding_window(ints_list, 2)]
-print(sum(res))
-
-# part 2
-
-window_sums = [sum(window) for window in sliding_window(ints_list, 3)]
-res = [(r > l) for (l, r) in sliding_window(window_sums, 2)]
-print(sum(res))
+if __name__ == "__main__":
+    main()
