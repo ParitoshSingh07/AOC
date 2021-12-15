@@ -119,3 +119,20 @@ for fish in fishes:
     totals += meta_result_dict[total_days - fish]
 
 print(totals)
+
+
+## part 2, actually effin good- credits https://github.com/spenpal2000/adventofcode/blob/main/2021/day6/day6.py
+from collections import Counter
+def part2(fishes):
+    timers = Counter({timer: 0 for timer in range(10)})
+    fishes = Counter(fishes)
+    fishes.update(timers)
+    
+    for day in range(256):
+        fishes[7] += fishes.get(0, 0)
+        fishes[9] += fishes.get(0, 0)
+        fishes = {fish: fishes.get(fish + 1, 0) for fish in fishes}
+        
+    return sum(fishes.values())
+
+part2(list(map(int, contents.split(","))))
