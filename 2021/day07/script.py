@@ -13,5 +13,33 @@ with open("input.txt") as f:
     contents = f.read().strip()
 
 contents = """
-
+16,1,2,0,4,2,7,1,2,14
 """.strip()
+
+# Part 1
+pos = list(map(int, contents.split(",")))
+
+minimum = min(pos)
+maximum = max(pos)
+
+results = {}
+for i in range(minimum, maximum + 1):
+    fuel = sum(abs(i - p) for p in pos)
+    results[i] = fuel
+
+
+print(min(results.items(), key=lambda x: x[1]))
+
+# part 2
+pos = list(map(int, contents.split(",")))
+
+minimum = min(pos)
+maximum = max(pos)
+
+results = {}
+for i in range(minimum, maximum + 1):
+    fuel = sum((abs(i - p) * (abs(i - p) + 1) / 2) for p in pos)
+    results[i] = fuel
+
+
+print(min(results.items(), key=lambda x: x[1]))
